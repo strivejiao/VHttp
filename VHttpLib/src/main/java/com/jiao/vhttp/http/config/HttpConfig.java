@@ -9,7 +9,7 @@ import java.util.Map;
 import okhttp3.Interceptor;
 
 /**
- * @Description : 请求全局配置
+ * @Description : 网络请求全局配置
  * @Author : StriveJiao
  * @Date : 2018/2/4 14:59
  */
