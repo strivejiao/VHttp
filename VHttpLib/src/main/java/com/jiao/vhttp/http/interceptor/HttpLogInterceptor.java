@@ -2,7 +2,7 @@ package com.jiao.vhttp.http.interceptor;
 
 import android.support.annotation.NonNull;
 
-import com.vise.log.ViseLog;
+import com.jiao.vhttp.log.VLog;
 
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -36,7 +36,7 @@ public class HttpLogInterceptor implements Interceptor {
         NONE,       //不打印log
         BASIC,      //只打印 请求首行 和 响应首行
         HEADERS,    //打印请求和响应的所有 Header
-        BODY        //所有数据全部打印
+        BODY,       //所有数据全部打印
     }
 
     private void log(String message) {
@@ -47,7 +47,7 @@ public class HttpLogInterceptor implements Interceptor {
         showMessage.append(message.concat("\n"));
         // 响应结束，打印整条日志
         if (message.startsWith("<-- END HTTP")) {
-            ViseLog.i(showMessage.toString());
+            VLog.i(showMessage.toString());
         }
 
     }
@@ -78,7 +78,7 @@ public class HttpLogInterceptor implements Interceptor {
         try {
             response = chain.proceed(request);
         } catch (Exception e) {
-            ViseLog.e("<-- HTTP FAILED: " + e);
+            VLog.e("<-- HTTP FAILED: " + e);
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
@@ -115,7 +115,7 @@ public class HttpLogInterceptor implements Interceptor {
                 }
             }
         } catch (Exception e) {
-            ViseLog.e(e);
+            VLog.e(e.toString());
         } finally {
             log("--> END " + request.method());
         }
@@ -149,7 +149,7 @@ public class HttpLogInterceptor implements Interceptor {
                 }
             }
         } catch (Exception e) {
-            ViseLog.e(e);
+            VLog.e(e.toString());
         } finally {
             log("<-- END HTTP");
         }

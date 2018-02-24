@@ -20,6 +20,7 @@ public class HttpConfig {
     private Map<String, String> globalParams = new LinkedHashMap<>();//请求参数
     private Map<String, String> globalHeaders = new LinkedHashMap<>();//请求头
     private String baseUrl;//基础域名
+    private boolean isLog = false;//是否输出日志
     private int retryDelayMillis;//请求失败重试间隔时间
     private int retryCount;//请求失败重试次数
     private int writeTimeout;//写入超时时间
@@ -95,6 +96,12 @@ public class HttpConfig {
         return this;
     }
 
+    //设置连接超时时间
+    public HttpConfig log(boolean isLog) {
+        this.isLog = isLog;
+        return this;
+    }
+
     //设置拦截器
     public HttpConfig interceptor(Interceptor interceptor) {
         this.interceptor = checkNotNull(interceptor, "interceptor == null");
@@ -135,6 +142,11 @@ public class HttpConfig {
     //获取连接超时时间
     public int getConnectTimeout() {
         return connectTimeout > 0 ? connectTimeout : VConfig.DEFAULT_TIMEOUT;
+    }
+
+    //获取是否输出日志
+    public boolean getIsLog() {
+        return isLog;
     }
 
     //获取拦截器

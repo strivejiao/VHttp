@@ -16,4 +16,5 @@ public class VConfig {
 
     public static final int DEFAULT_RETRY_COUNT = 0;//默认重试次数
     public static final int DEFAULT_RETRY_DELAY_MILLIS = 1000;//默认重试间隔时间（毫秒）
+    public static final String TAG = "VHttp";//日志输出标志
 }

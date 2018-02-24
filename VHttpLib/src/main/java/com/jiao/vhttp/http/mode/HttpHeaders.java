@@ -2,7 +2,8 @@ package com.jiao.vhttp.http.mode;
 
 import android.text.TextUtils;
 
-import com.vise.log.ViseLog;
+
+import com.jiao.vhttp.log.VLog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +24,7 @@ import java.util.TimeZone;
  * @Date : 2018/2/4 15:27
  */
 
-public class HttpHeaders implements Serializable{
+public class HttpHeaders implements Serializable {
     private static final String FORMAT_HTTP_DATA = "EEE, dd MMM y HH:mm:ss 'GMT'";
     private static final TimeZone GMT_TIME_ZONE = TimeZone.getTimeZone("GMT");
 
@@ -114,7 +115,7 @@ public class HttpHeaders implements Serializable{
                 jsonObject.put(entry.getKey(), entry.getValue());
             }
         } catch (JSONException e) {
-            ViseLog.e(e);
+            VLog.e(e.toString());
         }
         return jsonObject.toString();
     }

@@ -1,7 +1,7 @@
 package com.jiao.vhttp.http.func;
 
 import com.jiao.vhttp.http.exception.ApiException;
-import com.vise.log.ViseLog;
+import com.jiao.vhttp.log.VLog;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -35,7 +35,7 @@ public class ApiRetryFunc implements Function<Observable<? extends Throwable>, O
                     public ObservableSource<?> apply(Throwable throwable) throws Exception {
                         if (++retryCount <= maxRetries && (throwable instanceof SocketTimeoutException
                                 || throwable instanceof ConnectException)) {
-                            ViseLog.d("get response data error, it will try after " + retryDelayMillis
+                            VLog.d("get response data error, it will try after " + retryDelayMillis
                                     + " millisecond, retry count " + retryCount);
                             return Observable.timer(retryDelayMillis, TimeUnit.MILLISECONDS);
                         }

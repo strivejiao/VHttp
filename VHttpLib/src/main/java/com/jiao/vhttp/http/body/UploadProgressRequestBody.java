@@ -3,7 +3,7 @@ package com.jiao.vhttp.http.body;
 import android.support.annotation.NonNull;
 
 import com.jiao.vhttp.http.callback.UCallback;
-import com.vise.log.ViseLog;
+import com.jiao.vhttp.log.VLog;
 
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ import okio.Sink;
  * @Date : 2018/2/4 15:43
  */
 
-public class UploadProgressRequestBody extends RequestBody{
+public class UploadProgressRequestBody extends RequestBody {
     private RequestBody requestBody;
     private UCallback callback;
     private long lastTime;
@@ -85,7 +85,7 @@ public class UploadProgressRequestBody extends RequestBody{
                 Observable.just(currentLength).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        ViseLog.i("upload progress currentLength:" + currentLength + ",totalLength:" + totalLength);
+                        VLog.i("upload progress currentLength:" + currentLength + ",totalLength:" + totalLength);
                         callback.onProgress(currentLength, totalLength, (100.0f * currentLength) / totalLength);
                     }
                 }, new Consumer<Throwable>() {
